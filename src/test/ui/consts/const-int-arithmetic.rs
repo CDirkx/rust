@@ -1,10 +1,5 @@
 // run-pass
 
-#![feature(const_checked_int_methods)]
-#![feature(const_euclidean_int_methods)]
-#![feature(const_overflowing_int_methods)]
-#![feature(const_wrapping_int_methods)]
-
 use std::{i8, i128};
 
 macro_rules! suite {
@@ -22,7 +17,6 @@ macro_rules! suite {
 
 suite!(
     checked -> Option<i8> {
-        // `const_checked_int_methods`
         C1: 5i8.checked_add(2), Some(7);
         C2: 127i8.checked_add(2), None;
 
@@ -54,7 +48,6 @@ suite!(
         C20: (-5i8).checked_abs(), Some(5);
         C21: i8::MIN.checked_abs(), None;
 
-        // `const_euclidean_int_methods`
         C22: (i8::MIN + 1).checked_div_euclid(-1), Some(127);
         C23: i8::MIN.checked_div_euclid(-1), None;
         C24: (1i8).checked_div_euclid(0), None;
@@ -69,7 +62,6 @@ suite!(
     }
 
     saturating_and_wrapping -> i8 {
-        // `const_saturating_int_methods`
         C28: 100i8.saturating_add(1), 101;
         C29: i8::MAX.saturating_add(100), i8::MAX;
         C30: i8::MIN.saturating_add(-1), i8::MIN;
@@ -92,14 +84,12 @@ suite!(
         C59: i8::MIN.saturating_abs(), i8::MAX;
         C60: (i8::MIN + 1).saturating_abs(), i8::MAX;
 
-        // `const_wrapping_int_methods`
         C41: 100i8.wrapping_div(10), 10;
         C42: (-128i8).wrapping_div(-1), -128;
 
         C43: 100i8.wrapping_rem(10), 0;
         C44: (-128i8).wrapping_rem(-1), 0;
 
-        // `const_euclidean_int_methods`
         C45: 100i8.wrapping_div_euclid(10), 10;
         C46: (-128i8).wrapping_div_euclid(-1), -128;
 
@@ -115,14 +105,12 @@ suite!(
     }
 
     overflowing -> (i8, bool) {
-        // `const_overflowing_int_methods`
         C49: 5i8.overflowing_div(2), (2, false);
         C50: i8::MIN.overflowing_div(-1), (i8::MIN, true);
 
         C51: 5i8.overflowing_rem(2), (1, false);
         C52: i8::MIN.overflowing_rem(-1), (0, true);
 
-        // `const_euclidean_int_methods`
         C53: 5i8.overflowing_div_euclid(2), (2, false);
         C54: i8::MIN.overflowing_div_euclid(-1), (i8::MIN, true);
 

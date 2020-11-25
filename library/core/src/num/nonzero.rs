@@ -211,7 +211,7 @@ let n = std::num::", stringify!($Ty), "::new(", stringify!($LeadingTestExpr), ")
 assert_eq!(n.leading_zeros(), 0);
 ```"),
                     #[unstable(feature = "nonzero_leading_trailing_zeros", issue = "79143")]
-                    #[rustc_const_unstable(feature = "nonzero_leading_trailing_zeros", issue = "79143")]
+                    #[rustc_const_stable(feature = "nonzero_leading_trailing_zeros", since = "1.50.0")]
                     #[inline]
                     pub const fn leading_zeros(self) -> u32 {
                         // SAFETY: since `self` can not be zero it is safe to call ctlz_nonzero
@@ -236,7 +236,7 @@ let n = std::num::", stringify!($Ty), "::new(0b0101000).unwrap();
 assert_eq!(n.trailing_zeros(), 3);
 ```"),
                     #[unstable(feature = "nonzero_leading_trailing_zeros", issue = "79143")]
-                    #[rustc_const_unstable(feature = "nonzero_leading_trailing_zeros", issue = "79143")]
+                    #[rustc_const_stable(feature = "nonzero_leading_trailing_zeros", since = "1.50.0")]
                     #[inline]
                     pub const fn trailing_zeros(self) -> u32 {
                         // SAFETY: since `self` can not be zero it is safe to call cttz_nonzero
